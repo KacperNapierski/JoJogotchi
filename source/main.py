@@ -1,6 +1,6 @@
 import pygame, sys
 from settings import *
-from JoJos import *
+from jojos import *
 
 
 class Game:
@@ -10,8 +10,10 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
         self.game_active = True
+
         self.character_update_timer = pygame.USEREVENT + 1
         pygame.time.set_timer(self.character_update_timer, 5000)
+        
 
     def run(self):
         #TODO temp declaration

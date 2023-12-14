@@ -15,7 +15,7 @@ class JoJo(pygame.sprite.Sprite):
         self.happiness = 100
         self.money_generation_rate = 1
         self.physiological_need = 0.0
-
+        self.pets_avaliable = 3
 
     def play(self):
         ...
@@ -25,9 +25,11 @@ class JoJo(pygame.sprite.Sprite):
             #[ ]animation
             #[ ] Jotaro anoyence -> happiness lower
             #[ ]limit usage
-        if self.happiness < 98: self.happiness += 2
-        
+        if self.happiness < 98 and self.pets_avaliable:
+            self.happiness += 2
+            self.pets_avaliable -= 1
         else: ...
+
 
     def poop():
         ...
@@ -41,6 +43,8 @@ class JoJo(pygame.sprite.Sprite):
         if self.physiological_need == 1:
             self.cleanliness -= 10
         else: self.cleanliness -=2
+        
+        self.pets_avaliable = 3
 
 
     def animation_state():
