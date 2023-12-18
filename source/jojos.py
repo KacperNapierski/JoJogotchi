@@ -9,13 +9,25 @@ from settings import *
 class JoJo(pygame.sprite.Sprite):
     def __init__(self) -> None:
         super().__init__()
-
+        self.name = ''
+        self.age = 0
         self.cleanliness = 100
         self.hunger = 100
         self.happiness = 100
         self.money_generation_rate = 1
         self.physiological_need = 0.0
+
         self.pets_avaliable = 3
+
+        self.spritesheet = ''
+        self.sprite_width = 190
+        self.sprite_height = 230
+        self.animation_frame = 0
+
+
+    def aging(self):
+        self.age += 1
+        # evoluton -> change health and physiololg etc.
 
     def play(self):
         ...
@@ -33,7 +45,7 @@ class JoJo(pygame.sprite.Sprite):
 
     def poop():
         ...
-        
+
     
     def apply_needs(self):
         self.hunger -= 3
@@ -60,9 +72,13 @@ class JoJo(pygame.sprite.Sprite):
 class Jotaro(JoJo):
     def __init__(self) -> None:
         super().__init__()
+        self.name = 'Jotaro'
+        self.spritesheet = pygame.image.load('graphics/test_jotaro/jotaro_cute_x10.png').convert_alpha()
+
         name_font = pygame.font.Font(None,50)
-        self.name = name_font.render('Jotaro', False, "green")
-        self.jotaro = self.name.get_rect(center = (WIDTH//2, HEIGHT//4))
+        self.name_text = name_font.render('Jotaro', False, "green")
+        self.jotaro = self.name_text.get_rect(center = (WIDTH//2, HEIGHT//4))
+
 
 
 
