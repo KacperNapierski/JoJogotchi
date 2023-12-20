@@ -25,7 +25,6 @@ class Game:
         #TODO temp declaration
         jojo = Jotaro()
         button = Button('feed')
-        sprite = SpriteSheet(pygame.image.load('graphics/test_jotaro/jotaro_cute_x10.png').convert_alpha())
 
 
         while True:
@@ -51,16 +50,9 @@ class Game:
             
 
             if self.game_active:
-                print(sprite.animation_dictionary)
-                #frame = sprite.get_image(0, 190, 250, 'petting')
-                #frame = sprite.animation_dictionary['walking'][0]
-                frame = sprite.animation_state('smoking_dirty')
-                frame_rect = frame.get_rect(center = (300,300))
-                
-                #pygame. draw.rect(self.screen, 'Blue', pygame.Rect(219,36,160,300))
-                #pygame.draw.rect(self.screen,'#c0e8ec',jojo.jotaro)
-                #self.screen.blit(jojo.name_text, jojo.jotaro)
 
+                frame = jojo.animation_state('smoking')
+                frame_rect = frame.get_rect(center = (300,300))
                 jojo.update()
                 print(f'age: {jojo.age}')
                 print(f'hunger: {jojo.hunger}')

@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Group
 from settings import *
+from tools import *
 
 #TODO
 #[ ] hides all variables of classes inside functions
@@ -20,7 +21,7 @@ class JoJo(pygame.sprite.Sprite):
         self.pets_avaliable = 3
 
         self.spritesheet = ''
-        self.sprite_width = 190
+        self.sprite_width = 200
         self.sprite_height = 230
         self.animation_frame = 0
 
@@ -42,10 +43,8 @@ class JoJo(pygame.sprite.Sprite):
             self.pets_avaliable -= 1
         else: ...
 
-
     def poop():
         ...
-
     
     def apply_needs(self):
         self.hunger -= 3
@@ -59,7 +58,7 @@ class JoJo(pygame.sprite.Sprite):
         self.pets_avaliable = 3
 
 
-    def animation_state():
+    def animation_state(self):
         ...
 
     def update(self):
@@ -74,12 +73,43 @@ class Jotaro(JoJo):
         super().__init__()
         self.name = 'Jotaro'
         self.spritesheet = pygame.image.load('graphics/test_jotaro/jotaro_cute_x10.png').convert_alpha()
+        self.sprite_width = 200
+        self.sprite_height = 230
+        self.index = 0
+        self.scale = 1
 
-        name_font = pygame.font.Font(None,50)
-        self.name_text = name_font.render('Jotaro', False, "green")
-        self.jotaro = self.name_text.get_rect(center = (WIDTH//2, HEIGHT//4))
+        self.action_type = {
+            #action_name: level on spritesheet, number of frames
+            'walking': [0,4],
+            "petting": [1,1],
+            "smoking": [2,6],
+            'walking_dirty': [3,4],
+            "petting_dirty": [4,1],
+            "smoking_dirty": [5,6],
+            }
+        
+        self.animation_dictionary = {
+            'walking': [],
+            "petting": [],
+            "smoking": [],
+            'walking_dirty': [],
+            "petting_dirty": [],
+            "smoking_dirty": [],
+        }
+        self.ahnimation_speed = 0.03
+        self.get_animation_dict()
+
+        #name_font = pygame.font.Font(None,50)
+        #self.name_text = name_font.render('Jotaro', False, "green")
+        #self.jotaro = self.name_text.get_rect(center = (WIDTH//2, HEIGHT//4))
 
 
+    def get_animation_dict(self):
+        self.sprite = SpriteSheet(self.spritesheet, self.sprite_width, self.sprite_height, self.action_type, self.animation_dictionary, self.scale)
+
+    def animation_state(self,action):
+        return self.sprite.animation_state(action,self.ahnimation_speed)
+        
 
 
 class Giorno(JoJo):
