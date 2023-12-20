@@ -13,7 +13,12 @@ class SpriteSheet():
 
     def get_image(self,animation_frame:int, sprite_width:int, sprite_height:int, action:str, scale=1): #, color):
         sprite = pygame.Surface((sprite_width, sprite_height)).convert_alpha()
-        sprite.blit(self.sheet, (0,0),((animation_frame * sprite_width), (self.action_type[action][0] * sprite_height), sprite_width, sprite_height))
+        sprite.blit(self.sheet,
+                    (0,0),
+                    ((animation_frame * sprite_width),
+                     (self.action_type[action][0] * sprite_height),
+                     sprite_width,
+                     sprite_height))
         sprite = pygame.transform.scale(sprite, (sprite_width * scale, sprite_height * scale))
         #sprite.set_colorkey(color)
         return sprite

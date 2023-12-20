@@ -1,5 +1,6 @@
 import pygame, sys
 from settings import *
+
 from jojos import *
 from ui import *
 from tools import *
@@ -45,14 +46,15 @@ class Game:
 
 
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        if jojo.jotaro.collidepoint(event.pos):
+                        #jojo.animation_statee rect
+                        if frame_rect.collidepoint(event.pos):
                             jojo.pet()
             
 
             if self.game_active:
 
                 frame = jojo.animation_state('smoking')
-                frame_rect = frame.get_rect(center = (300,300))
+                frame_rect = frame.get_rect(center = (WIDTH*2/5,HEIGHT*2/5))
                 jojo.update()
                 print(f'age: {jojo.age}')
                 print(f'hunger: {jojo.hunger}')

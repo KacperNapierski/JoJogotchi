@@ -96,7 +96,7 @@ class Jotaro(JoJo):
             "petting_dirty": [],
             "smoking_dirty": [],
         }
-        self.ahnimation_speed = 0.03
+        self.animation_speed = 0.03
         self.get_animation_dict()
 
         #name_font = pygame.font.Font(None,50)
@@ -105,18 +105,25 @@ class Jotaro(JoJo):
 
 
     def get_animation_dict(self):
-        self.sprite = SpriteSheet(self.spritesheet, self.sprite_width, self.sprite_height, self.action_type, self.animation_dictionary, self.scale)
+        self.sprite = SpriteSheet(
+            self.spritesheet,
+            self.sprite_width,
+            self.sprite_height,
+            self.action_type,
+            self.animation_dictionary,
+            self.scale)
 
     def animation_state(self,action):
-        return self.sprite.animation_state(action,self.ahnimation_speed)
+        return self.sprite.animation_state(action,self.animation_speed)
         
+
+
 
 
 class Giorno(JoJo):
     def __init__(self) -> None:
         super().__init__()
         self.money_generation_rate = 1.3
-
 
 
 class Kakyoin(JoJo):
