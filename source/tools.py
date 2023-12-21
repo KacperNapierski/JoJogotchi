@@ -28,9 +28,9 @@ class SpriteSheet():
             for frame in range(self.action_type[key][1]):
                 self.animation_dictionary[key].append(self.get_image(frame,self.sprite_width, self.sprite_height, key, self.scale))
 
-    def animation_state(self, action, speed:float):
+    def animation_state(self, action, speed:float, offset = 0):
         self.animation_index += speed
-        if self.animation_index >= len(self.animation_dictionary[action]):
+        if self.animation_index >= len(self.animation_dictionary[action]) - offset:
             self.animation_index = 0
         
-        return self.animation_dictionary[action][int(self.animation_index)]
+        return self.animation_dictionary[action][int(self.animation_index + offset)]

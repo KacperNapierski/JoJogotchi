@@ -61,6 +61,8 @@ class JoJo(pygame.sprite.Sprite):
     def animation_state(self):
         ...
 
+    def played(self)
+
     def update(self):
         #self.apply_needs()
         self.play()
@@ -80,18 +82,18 @@ class Jotaro(JoJo):
 
         self.action_type = {
             #action_name: level on spritesheet, number of frames
-            'walking': [0,4],
-            "petting": [1,1],
-            "smoking": [2,6],
+            'walking':       [0,4],
+            "petting":       [1,1],
+            "smoking":       [2,6],
             'walking_dirty': [3,4],
             "petting_dirty": [4,1],
             "smoking_dirty": [5,6],
             }
         
         self.animation_dictionary = {
-            'walking': [],
-            "petting": [],
-            "smoking": [],
+            'walking':       [],
+            "petting":       [],
+            "smoking":       [],
             'walking_dirty': [],
             "petting_dirty": [],
             "smoking_dirty": [],
@@ -111,7 +113,8 @@ class Jotaro(JoJo):
             self.sprite_height,
             self.action_type,
             self.animation_dictionary,
-            self.scale)
+            self.scale
+        )
 
     def animation_state(self,action):
         return self.sprite.animation_state(action,self.animation_speed)

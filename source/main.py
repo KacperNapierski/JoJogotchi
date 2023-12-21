@@ -23,10 +23,12 @@ class Game:
         
 
     def run(self):
-        #TODO temp declaration
-        jojo = Jotaro()
-        button = Button('feed')
+        #TODO temp declaration / 
+        #FIXME HOW UTTONS BETTER????
+        self.play_countdown = 0
 
+        jojo = Jotaro()
+        button = Button('play')
 
         while True:
             #TODO event handler class?
@@ -47,15 +49,31 @@ class Game:
 
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         #jojo.animation_statee rect
-                        if frame_rect.collidepoint(event.pos):
+                        if jojo_rect.collidepoint(event.pos):
                             jojo.pet()
-            
+
+
+                        if play_rect.collidepoint(event.pos) and self.play_countdown == 0:
+                            self.play_countdown = 20
+                            
+
 
             if self.game_active:
 
-                frame = jojo.animation_state('smoking')
-                frame_rect = frame.get_rect(center = (WIDTH*2/5,HEIGHT*2/5))
+                jojo_surface = jojo.animation_state('smoking')
+                jojo_rect = jojo_surface.get_rect(center = (WIDTH*2/5,HEIGHT*2/5))
                 jojo.update()
+                
+                if self.play_countdown > 0:
+                    play_surface = button.animation_state(offset=1)
+                    self.play_countdown -= 1
+                else: play_surface = button.default_animation_state()
+
+                
+                play_rect = play_surface.get_rect(center = (WIDTH*4/5, HEIGHT/5))
+
+                
+
                 print(f'age: {jojo.age}')
                 print(f'hunger: {jojo.hunger}')
                 print(f'happiness {jojo.happiness}')
@@ -63,8 +81,9 @@ class Game:
                 print(f'poop {jojo.physiological_need}')
                 print(f'#######')
 
-                self.screen.blit(frame, frame_rect)
-                self.screen.blit(button.name_text, button.button_rect)
+                self.screen.blit(jojo_surface, jojo_rect)
+                self.screen.blit(play_surface,play_rect)
+                #self.screen.blit(button.name_text, button.button_rect)
         
     
             pygame.display.update()
