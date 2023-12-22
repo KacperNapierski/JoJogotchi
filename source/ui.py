@@ -11,7 +11,7 @@ class Button(pygame.sprite.Sprite):
         #self.name_text = name_font.render(text, False, (64,64,64))
         #self.button_rect = self.name_text.get_rect(center = (WIDTH//4, HEIGHT*4//5))
         self.action = action
-        self.spritesheet = pygame.image.load('graphics/test_jotaro/buttons.png').convert_alpha()
+        self.spritesheet = pygame.image.load('graphics/UI/buttons.png').convert_alpha()
         self.sprite_width = 60
         self.sprite_height = 60
         self.index = 0
@@ -21,19 +21,23 @@ class Button(pygame.sprite.Sprite):
             'play':  [0,3],
             'feed':  [1,3],
             'clean': [2,3],
-            'heal':  [3,3],
+            'cure':  [3,3],
         }
 
         self.animation_dictionary = {
             'play':  [],
             'feed':  [],
             'clean': [],
-            'heal':  [],
+            'cure':  [],
         }
 
         self.animation_speed = 0.1
-        #self.animation_speed = 0.03
         self.get_animation_dict()
+
+
+        #self.countdown = 0
+        #self.pos_x = pos_x
+        #self.pos_y = pos_y
 
     def get_animation_dict(self):
         self.sprite = SpriteSheet(
@@ -52,3 +56,12 @@ class Button(pygame.sprite.Sprite):
     def default_animation_state(self):
         self.index = 0
         return self.animation_dictionary[self.action][0]
+    
+    #def animation_handler(self):
+    #    if self.countdown > 0:
+    #        surface = self.animation_state(offset=1)
+    #        self.countdown -= 1
+    #    else: surface = self.default_animation_state()
+    #    rect = surface.get_rect()
+
+    ##TODO update funtion

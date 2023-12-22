@@ -11,7 +11,7 @@ class SpriteSheet():
         self.scale = scale
         self.get_animation_dict()
 
-    def get_image(self,animation_frame:int, sprite_width:int, sprite_height:int, action:str, scale=1): #, color):
+    def get_image(self,animation_frame:int, sprite_width:int, sprite_height:int, action:str, scale=1, color = 'BLACK'):
         sprite = pygame.Surface((sprite_width, sprite_height)).convert_alpha()
         sprite.blit(self.sheet,
                     (0,0),
@@ -20,7 +20,7 @@ class SpriteSheet():
                      sprite_width,
                      sprite_height))
         sprite = pygame.transform.scale(sprite, (sprite_width * scale, sprite_height * scale))
-        #sprite.set_colorkey(color)
+        sprite.set_colorkey(color)
         return sprite
     
     def get_animation_dict(self):
@@ -33,4 +33,4 @@ class SpriteSheet():
         if self.animation_index >= len(self.animation_dictionary[action]) - offset:
             self.animation_index = 0
         
-        return self.animation_dictionary[action][int(self.animation_index + offset)]
+        return self.animation_dictionary[action][int(self.animation_index + offset)].convert_alpha()

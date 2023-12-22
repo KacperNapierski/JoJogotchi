@@ -61,7 +61,8 @@ class JoJo(pygame.sprite.Sprite):
     def animation_state(self):
         ...
 
-    def played(self)
+    def played(self):
+        ...
 
     def update(self):
         #self.apply_needs()
@@ -74,7 +75,8 @@ class Jotaro(JoJo):
     def __init__(self) -> None:
         super().__init__()
         self.name = 'Jotaro'
-        self.spritesheet = pygame.image.load('graphics/test_jotaro/jotaro_cute_x10.png').convert_alpha()
+        #TODO move as many to JOJO class
+        self.spritesheet = pygame.image.load('graphics/Jotaro/jotaro_cute_x10.png').convert_alpha()
         self.sprite_width = 200
         self.sprite_height = 230
         self.index = 0
@@ -98,6 +100,9 @@ class Jotaro(JoJo):
             "petting_dirty": [],
             "smoking_dirty": [],
         }
+
+
+        #TODO ove to JOJO class
         self.animation_speed = 0.03
         self.get_animation_dict()
 
@@ -105,7 +110,7 @@ class Jotaro(JoJo):
         #self.name_text = name_font.render('Jotaro', False, "green")
         #self.jotaro = self.name_text.get_rect(center = (WIDTH//2, HEIGHT//4))
 
-
+    
     def get_animation_dict(self):
         self.sprite = SpriteSheet(
             self.spritesheet,
