@@ -3,7 +3,7 @@ from settings import *
 from tools import *
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, action):
+    def __init__(self, action,  pos_x, pos_y):
 
         #load spritesheet
 
@@ -35,9 +35,9 @@ class Button(pygame.sprite.Sprite):
         self.get_animation_dict()
 
 
-        #self.countdown = 0
-        #self.pos_x = pos_x
-        #self.pos_y = pos_y
+        self.countdown = 0
+        self.pos_x = pos_x
+        self.pos_y = pos_y
 
     def get_animation_dict(self):
         self.sprite = SpriteSheet(
@@ -57,11 +57,14 @@ class Button(pygame.sprite.Sprite):
         self.index = 0
         return self.animation_dictionary[self.action][0]
     
-    #def animation_handler(self):
-    #    if self.countdown > 0:
-    #        surface = self.animation_state(offset=1)
-    #        self.countdown -= 1
-    #    else: surface = self.default_animation_state()
-    #    rect = surface.get_rect()
+    def animation_handler(self):
+        if self.countdown > 0:
+            surface = self.animation_state(offset=1)
+            self.countdown -= 1
+        else: surface = self.default_animation_state()
+        rect = surface.get_rect(center = (self.pos_x,self.pos_y))
+        return surface, rect
 
+    def update(self):
+        
     ##TODO update funtion
