@@ -5,16 +5,15 @@ from tools import *
 class Button(pygame.sprite.Sprite):
     def __init__(self, action,  pos_x, pos_y):
 
-        #load spritesheet
-
-        #name_font = pygame.font.Font(None,50)
-        #self.name_text = name_font.render(text, False, (64,64,64))
-        #self.button_rect = self.name_text.get_rect(center = (WIDTH//4, HEIGHT*4//5))
+        self.pos_x = pos_x
+        self.pos_y = pos_y
         self.action = action
         self.spritesheet = pygame.image.load('graphics/UI/buttons.png').convert_alpha()
         self.sprite_width = 60
         self.sprite_height = 60
         self.index = 0
+        self.animation_speed = 0.1
+        self.countdown = 0
         self.scale = 1
 
         self.action_type = {
@@ -31,13 +30,7 @@ class Button(pygame.sprite.Sprite):
             'cure':  [],
         }
 
-        self.animation_speed = 0.1
         self.get_animation_dict()
-
-
-        self.countdown = 0
-        self.pos_x = pos_x
-        self.pos_y = pos_y
 
     def get_animation_dict(self):
         self.sprite = SpriteSheet(
@@ -65,6 +58,6 @@ class Button(pygame.sprite.Sprite):
         rect = surface.get_rect(center = (self.pos_x,self.pos_y))
         return surface, rect
 
-    def update(self):
-        
     ##TODO update funtion
+    #def update(self):
+    #    self.animation_handler()
