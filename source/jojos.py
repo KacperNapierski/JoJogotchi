@@ -115,6 +115,7 @@ class Jotaro(JoJo):
 
         self.get_animation_dict()
         
+    #Why I cannot move this
     def animation_state(self,action):
         return self.sprite.animation_state(action,self.animation_speed)
         
