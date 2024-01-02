@@ -22,6 +22,10 @@ class JoJo(pygame.sprite.Sprite):
         #actions
         self.pets_avaliable = 3
 
+        #position
+        self.pos_x = 0
+        self.pos_y = 0
+
         #animations
         self.spritesheet = ''
         self.sprite_width = 200
@@ -31,7 +35,8 @@ class JoJo(pygame.sprite.Sprite):
         self.scale = 1
         self.action_type = {}
         self.animation_dictionary = {}
-        
+        self.action = 'walking'
+        self.action_counter = FPS/1.2
 
 
     def aging(self):
@@ -39,7 +44,9 @@ class JoJo(pygame.sprite.Sprite):
         # evoluton -> change health and physiololg etc.
 
     def play(self):
-        ...
+        self.action = 'petting'
+        self.happiness -= 10
+
     
     def pet(self):
             #TODO 
@@ -49,10 +56,35 @@ class JoJo(pygame.sprite.Sprite):
         if self.happiness < 98 and self.pets_avaliable:
             self.happiness += 2
             self.pets_avaliable -= 1
+            self.action = 'petting'
         else: ...
 
-    def poop():
-        ...
+    #TODO TODO TODO
+    #finish functions
+    # move smoking to jotaro
+    def poop(self):
+        self.happiness -= 40
+
+    
+    def check_needs(self):
+        if self.cleanliness < 40:
+            self.action = 'dirty_walking'
+            
+        if self.happiness < 10:
+            #after a while
+            self.smoke()
+
+        if self.physiological_need > 1.5:
+            self.poop()
+
+
+
+    def smoke(self):
+        self.happiness += 70
+        self.action = 'smoking'
+
+        if self.cleanliness < 40:
+            self.action = 'dirty_smoking'
     
     def apply_needs(self):
         self.hunger -= 3
@@ -67,15 +99,7 @@ class JoJo(pygame.sprite.Sprite):
 
     def animation_state(self):
         ...
-
-    def played(self):
-        ...
-
-    def update(self):
-        #self.apply_needs()
-        self.play()
-        #self.animation_state()
-
+        
     def get_animation_dict(self):
         self.sprite = SpriteSheet(
             self.spritesheet,
@@ -85,14 +109,34 @@ class JoJo(pygame.sprite.Sprite):
             self.animation_dictionary,
             self.scale
         )
+    
+    def animation_handler(self):
+        
+        if self.action == 'petting' and self.action_counter > 0:
+            self.action_counter -= 1
+        elif self.action == 'petting' and self.action_counter == 0:
+            self.action = 'walking'
+            self.action_counter = FPS/1.2
+
+        surface = self.animation_state(self.action)
+        rect = surface.get_rect(center = (self.pos_x,self.pos_y))
+
+        return surface, rect
+    
+    def update(self):
+        ...
+        #self.apply_needs()
+        #self.play()
+        #self.animation_state()
 
 
 class Jotaro(JoJo):
-    def __init__(self) -> None:
+    def __init__(self, pos_x, pos_y) -> None:
         super().__init__()
         self.name = 'Jotaro'
         self.spritesheet = pygame.image.load('graphics/Jotaro/jotaro_cute_x10.png').convert_alpha()
-
+        self.pos_x = pos_x
+        self.pos_y = pos_y
 
         self.action_type = {
             #action_name: level on spritesheet, number of frames
@@ -116,8 +160,9 @@ class Jotaro(JoJo):
         self.get_animation_dict()
         
     #Why I cannot move this
-    def animation_state(self,action):
+    def animation_state(self, action):
         return self.sprite.animation_state(action,self.animation_speed)
+
         
 
 

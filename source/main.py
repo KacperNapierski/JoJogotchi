@@ -28,7 +28,7 @@ class Game:
 
 
     def run(self):
-        jojo = Jotaro()
+        jojo = Jotaro(WIDTH*1.5/5, HEIGHT*2.8/5)
 
         #BUTTONS
         play_button = Button('play', WIDTH*4/5, HEIGHT/5)
@@ -62,12 +62,16 @@ class Game:
                         #BUTTONS
                         if play_rect.collidepoint(event.pos) and play_button.countdown == 0:
                             play_button.countdown = 20
+                            jojo.play()
                         elif feed_rect.collidepoint(event.pos) and feed_button.countdown == 0:
                             feed_button.countdown  = 20
+                            #jojo_surface = jojo.animation_state('walking')
                         elif clean_rect.collidepoint(event.pos) and clean_button.countdown == 0:
                             clean_button.countdown = 20
+                            #jojo_surface = jojo.animation_state('walking')
                         elif cure_rect.collidepoint(event.pos) and cure_button.countdown == 0:
                             cure_button.countdown = 20
+
 
 
             if self.game_active:
@@ -79,9 +83,8 @@ class Game:
                 cure_surface,cure_rect = cure_button.animation_handler()
 
                 #JOJO
-                jojo_surface = jojo.animation_state('walking')
-                jojo_rect = jojo_surface.get_rect(center = (WIDTH*1.5/5,HEIGHT*2.8/5))
-                jojo.update()
+                jojo_surface, jojo_rect = jojo.animation_handler()
+                #jojo.update()
 
                 print(f'age: {jojo.age}')
                 print(f'hunger: {jojo.hunger}')
