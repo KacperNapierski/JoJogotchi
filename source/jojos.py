@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Group
 from settings import *
 from tools import *
+from poop import *
 
 #TODO
 #[ ] hides all variables of classes inside functions
@@ -63,7 +64,8 @@ class JoJo(pygame.sprite.Sprite):
     #finish functions
     # move smoking to jotaro
     def poop(self):
-        self.happiness -= 40
+        self.happiness -= 10
+        self.physiological_need = 0
 
     
     def check_needs(self):
@@ -86,6 +88,7 @@ class JoJo(pygame.sprite.Sprite):
         if self.cleanliness < 40:
             self.action = 'dirty_smoking'
     
+    #TODO limit to zero
     def apply_needs(self):
         self.hunger -= 3
         self.happiness -= 5
