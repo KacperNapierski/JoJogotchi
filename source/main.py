@@ -24,6 +24,7 @@ class Game:
         #TODO prolong days after tests
         pygame.time.set_timer(self.day_timer, 10000)
         
+        self.poop_group = pygame.sprite.Group()
 
 
 
@@ -50,6 +51,10 @@ class Game:
 
                 if self.game_active == True:
                     if event.type == self.character_update_timer:
+                        is_poop = jojo.check_needs()
+                        if is_poop != None:
+                            self.poop_group.add(is_poop)
+                            print('POOP')
                         jojo.apply_needs()
 
                     # leeft mouse button click
@@ -84,6 +89,7 @@ class Game:
 
                 #JOJO
                 jojo_surface, jojo_rect = jojo.animation_handler()
+                
                 #jojo.update()
 
                 print(f'age: {jojo.age}')
@@ -101,6 +107,7 @@ class Game:
                 self.screen.blit(feed_surface,feed_rect)
                 self.screen.blit(clean_surface,clean_rect)
                 self.screen.blit(cure_surface,cure_rect)
+                self.poop_group.draw(self.screen)
     
     
             pygame.display.update()

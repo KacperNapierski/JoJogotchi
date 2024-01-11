@@ -66,6 +66,8 @@ class JoJo(pygame.sprite.Sprite):
     def poop(self):
         self.happiness -= 10
         self.physiological_need = 0
+        return Poop()
+
 
     
     def check_needs(self):
@@ -76,9 +78,10 @@ class JoJo(pygame.sprite.Sprite):
             #after a while
             self.smoke()
 
-        if self.physiological_need > 1.5:
-            self.poop()
-
+        #if self.physiological_need > 1.5:
+        #     return self.poop()
+        if self.physiological_need > 0.05:
+            return self.poop()
 
 
     def smoke(self):

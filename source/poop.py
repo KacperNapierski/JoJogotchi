@@ -16,6 +16,8 @@ class Poop(pygame.sprite.Sprite):
         self.max_number = 4
         self.cleanliness_impact = [5, 10, 25, 50]
 
+        self.generate()
+
 
     def generate(self):
         bounds = {
@@ -24,7 +26,7 @@ class Poop(pygame.sprite.Sprite):
             'left': 300,
             'right': 550,
         }
-        self.rect = self.spritesheet.get_rect(center = (randrange(bounds['left'],bounds['right']),(randrange(bounds['down'],bounds['upper']))))
+        self.rect = self.spritesheet.get_rect(center = (randrange(bounds['left'],bounds['right']),(randrange(bounds['upper'],bounds['down']))))
         return self.spritesheet, self.rect
 
 
