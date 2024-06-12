@@ -89,7 +89,7 @@ class Game:
 
                 #JOJO
                 jojo_surface, jojo_rect = jojo.animation_handler()
-                
+            
                 #jojo.update()
 
                 print(f'age: {jojo.age}')
