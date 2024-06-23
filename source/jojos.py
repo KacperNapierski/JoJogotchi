@@ -39,7 +39,6 @@ class JoJo(pygame.sprite.Sprite):
         self.action = 'walking'
         self.action_counter = FPS/1.2
 
-
     def aging(self):
         self.age += 1
         # evoluton -> change health and physiololg etc.
@@ -48,7 +47,6 @@ class JoJo(pygame.sprite.Sprite):
         self.action = 'petting'
         self.happiness -= 10
 
-    
     def pet(self):
             #TODO 
             #[ ]animation
@@ -68,8 +66,6 @@ class JoJo(pygame.sprite.Sprite):
         self.physiological_need = 0
         return Poop()
 
-
-    
     def check_needs(self):
         if self.cleanliness < 40:
             self.action = 'dirty_walking'
@@ -82,7 +78,6 @@ class JoJo(pygame.sprite.Sprite):
         #     return self.poop()
         if self.physiological_need > 0.05:
             return self.poop()
-
 
     def smoke(self):
         self.happiness += 70
@@ -100,7 +95,6 @@ class JoJo(pygame.sprite.Sprite):
         if self.physiological_need == 1:
             self.cleanliness -= 10
         else: self.cleanliness -=2
-        
         self.pets_avaliable = 3
 
     def animation_state(self):
@@ -117,7 +111,6 @@ class JoJo(pygame.sprite.Sprite):
         )
     
     def animation_handler(self):
-        
         if self.action == 'petting' and self.action_counter > 0:
             self.action_counter -= 1
         elif self.action == 'petting' and self.action_counter == 0:

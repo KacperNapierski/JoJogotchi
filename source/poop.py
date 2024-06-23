@@ -18,7 +18,6 @@ class Poop(pygame.sprite.Sprite):
 
         self.generate()
 
-
     def generate(self):
         bounds = {
             'upper': 500,
@@ -28,6 +27,3 @@ class Poop(pygame.sprite.Sprite):
         }
         self.rect = self.spritesheet.get_rect(center = (randrange(bounds['left'],bounds['right']),(randrange(bounds['upper'],bounds['down']))))
         return self.spritesheet, self.rect
-
-
-    
